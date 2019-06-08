@@ -25,9 +25,9 @@ func TestSafePointerPassing(t *testing.T) {
 	waiter.Add(size)
 	message := &Message{current: 1}
 	for i := 0; i < 10; i++ {
-		var copy = new(Message)
-		*copy = *message
-		go valueChange(i+1, copy, &waiter)
+		var clone = new(Message)
+		*clone = *message
+		go valueChange(i+1, clone, &waiter)
 	}
 	waiter.Wait()
 }
